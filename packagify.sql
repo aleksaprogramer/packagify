@@ -1,0 +1,27 @@
+DROP DATABASE packagify;
+CREATE DATABASE packagify;
+USE packagify;
+
+CREATE TABLE users (
+	id INT NOT NULL AUTO_INCREMENT,
+	username VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL,
+	hashed_pwd VARCHAR(255) NOT NULL,
+	is_admin BOOLEAN DEFAULT FALSE,
+	created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+	
+	PRIMARY KEY (id),
+	UNIQUE KEY (email)
+);
+
+CREATE TABLE packages (
+	id INT NOT NULL AUTO_INCREMENT,
+	user_id INT NOT NULL,
+	filename VARCHAR(255) NOT NULL,
+	documentation VARCHAR(4000) NOT NULL,
+	filepath VARCHAR(400) NOT NULL,
+	created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+	
+	PRIMARY KEY (id),
+	FOREIGN KEY (user_id) REFERENCES users(id)
+);
