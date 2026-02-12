@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // Header
 require_once './inc/header.php';

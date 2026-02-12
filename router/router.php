@@ -12,6 +12,10 @@ if (isset($_GET['router'])) {
         case 'login':
             require_once '././modules/login.php';
             break;
+        
+        case 'otp':
+            require_once '././modules/otp.php';
+            break;
 
         default:
             exit('404. Page not found');
