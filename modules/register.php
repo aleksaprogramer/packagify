@@ -27,9 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
 
     } else if (time() >= (int)$_SESSION['csrf-token-expire']) {
+        header("Location: " . $env->base_url . "?router=register");
         unset($_SESSION['csrf-token']);
         unset($_SESSION['csrf-token-expire']);
-        header("Location: " . $env->base_url . "?router=register");
         exit();
 
     } else if (!hash_equals($_SESSION['csrf-token'], $csrf_token)) {
