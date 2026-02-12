@@ -1,6 +1,12 @@
 <?php
 require_once './classes/User.php';
 
+// Checking user
+if (is_logged()) {
+    header("Location: " . $env->base_url . "?router=otp");
+    exit();
+}
+
 // CSRF token
 if (!isset($_SESSION['csrf_token']) || !isset($_SESSION['csrf_token_expire'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));

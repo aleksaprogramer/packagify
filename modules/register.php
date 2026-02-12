@@ -1,6 +1,12 @@
 <?php
 require_once './classes/User.php';
 
+// Checking user
+if (is_logged()) {
+    header("Location: " . $env->base_url . "?router=otp");
+    exit();
+}
+
 // CRSF token
 if (!isset($_SESSION['csrf-token']) || !isset($_SESSION['csrf-token-expire'])) {
     $_SESSION['csrf-token'] = bin2hex(random_bytes(32));
@@ -26,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         header("Location: " . $env->base_url . "?router=register");
         exit();
 
-    } else if (time() >= (int)$_SESSION['csrf-token-expire']) {
+    } else if (time() > (int)$_SESSION['csrf-token-expire']) {
         header("Location: " . $env->base_url . "?router=register");
         unset($_SESSION['csrf-token']);
         unset($_SESSION['csrf-token-expire']);
@@ -72,6 +78,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo 'user';
 
         if ($user) {
+            echo "500. Server error";
+            
+        } else {
             unset($_SESSION['csrf-token']);
             unset($_SESSION['csrf-token-expire']);
             header("Location: " . $env->base_url . "?router=otp");
