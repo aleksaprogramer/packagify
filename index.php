@@ -1,3 +1,4 @@
 <?php
 
-echo 'radi packagify';
+// Database
+require_once './config/db.php';
