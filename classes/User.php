@@ -33,10 +33,10 @@ class User {
 
         $run = $this->db->prepare($sql);
         $run->bind_param("s", $email);
-        $run-execute();
+        $run->execute();
         $results = $run->get_result();
 
-        $user = $result->fetch_assoc();
+        $user = $results->fetch_assoc();
 
         if (!$user) {
             return false;
