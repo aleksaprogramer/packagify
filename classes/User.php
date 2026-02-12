@@ -26,4 +26,28 @@ class User {
             return false;
         }
     }
+
+    public function login ($email, $password) {
+
+        $sql = "SELECT id, hashed_pwd FROM users WHERE email = ?;";
+
+        $run = $this->db->prepare($sql);
+        $run->bind_param("s", $email);
+        $run-execute();
+        $results = $run->get_result();
+
+        $user = $result->fetch_assoc();
+
+        if (!$user) {
+            return false;
+        }
+
+        if (password_verify($password, $user['hashed_pwd'])) {
+            $_SESSION['user_id'] = $user['id'];
+            return true;
+
+        } else {
+            return false;
+        }
+    }
 }
