@@ -24,6 +24,18 @@ class Package {
     }
 
     public function get_all_packages () {
-        $sql = "SELECT user_id, ";
+        $sql = "SELECT user_id, package_name, documentation, created_at
+        FROM packages";
+        $run = $this->db->prepare($sql);
+        $run->execute();
+        $results = $run->get_result();
+        $packages = $results->fetch_all(MYSQLI_ASSOC);
+
+        if ($packages) {
+            return $packages;
+
+        } else {
+            return false;
+        }
     }
 }

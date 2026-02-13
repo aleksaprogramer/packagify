@@ -71,7 +71,7 @@ class User {
 
     public function get_all_users () {
 
-        $sql = "SELECT username, email FROM users;";
+        $sql = "SELECT username, email, is_admin, created_at FROM users;";
         $run = $this->db->prepare($sql);
         $run->execute();
         $results = $run->get_result();
