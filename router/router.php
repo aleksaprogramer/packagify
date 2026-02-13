@@ -25,6 +25,10 @@ if (isset($_GET['router'])) {
             require_once '././modules/profile.php';
             break;
 
+        case 'make-new-package':
+            require_once '././modules/make-new-package.php';
+            break;
+
         default:
             require_once '././modules/404.php';
     }
