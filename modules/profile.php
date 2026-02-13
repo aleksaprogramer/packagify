@@ -1,5 +1,6 @@
 <?php
 require_once './classes/User.php';
+require_once './classes/Package.php';
 
 // Checking user
 if (!is_logged()) {
@@ -10,6 +11,9 @@ if (!is_logged()) {
 
 $user = new User();
 $logged_user = $user->get_user_data($_SESSION['user_id']);
+
+$package = new Package();
+$packages_by_user = $package->get_packages_by_user_id($_SESSION['user_id']);
 
 ?>
 
@@ -24,5 +28,14 @@ $logged_user = $user->get_user_data($_SESSION['user_id']);
     <div class="profile-content">
         <h3>Username: <?php echo $logged_user['username'] ?></h3>
         <h3>Email: <?php echo $logged_user['email'] ?></h3>
+    </div>
+
+    <div class="user-packages">
+        <h2>Packages</h2>
+
+        <?php foreach ($packages_by_user as $package): ?>
+            <h3>Package name: <?php echo $package['package_name']; ?></h3>
+            <h3>Created at: <?php echo $package['created_at']; ?></h3>
+        <?php endforeach; ?>
     </div>
 </div>

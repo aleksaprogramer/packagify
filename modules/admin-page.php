@@ -25,6 +25,13 @@ $packages = $package->get_all_packages();
 <div class="admin-page">
     <h2>Admin Page</h2>
 
+    <a href="<?php echo $env->base_url . "?router=homepage"; ?>">Back to homepage</a>
+
+    <ul>
+        <li><a href="#">Users</a></li>
+        <li><a href="#">Packages</a></li>
+    </ul>
+
     <div class="users">
         <h3>Users</h3>
 
