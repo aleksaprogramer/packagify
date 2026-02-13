@@ -20,6 +20,17 @@ $users = $user->get_all_users();
 $package = new Package();
 $packages = $package->get_all_packages();
 
+// Handling deleting users
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete'])) {
+    $user_id = htmlspecialchars(trim($_POST['user_id']));
+    $deleted_user = $user->delete_user($user_id);
+
+    if ($deleted_user) {
+        header("Location: " . $env->base_url . "?router=admin-page");
+        exit();
+    }
+}
+
 ?>
 
 <div class="admin-page">
@@ -41,6 +52,10 @@ $packages = $package->get_all_packages();
                 <p>Email: <?php echo $user['email']; ?></p>
                 <p>Admin: <?php echo $user['is_admin'] ? 'Yes' : 'No'; ?></p>
                 <p>Created at: <?php echo $user['created_at']; ?></p>
+                <form method="POST">
+                    <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+                    <button type="submit" name="delete">Delete</button>
+                </form>
             </div>
         <?php endforeach; ?>
 

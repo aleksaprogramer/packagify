@@ -35,7 +35,7 @@ class Package {
             return $packages;
 
         } else {
-            return false;
+            return [];
         }
     }
 
@@ -52,7 +52,7 @@ class Package {
             return $packages;
 
         } else {
-            return false;
+            return [];
         }
     }
 }

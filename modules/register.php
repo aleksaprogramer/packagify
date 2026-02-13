@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $user = $new_user->register($username, $email, $password);
         echo 'user';
 
-        if ($user) {
+        if (!$user) {
             echo "500. Server error";
             
         } else {

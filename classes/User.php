@@ -71,7 +71,7 @@ class User {
 
     public function get_all_users () {
 
-        $sql = "SELECT username, email, is_admin, created_at FROM users;";
+        $sql = "SELECT id, username, email, is_admin, created_at FROM users;";
         $run = $this->db->prepare($sql);
         $run->execute();
         $results = $run->get_result();
@@ -79,6 +79,22 @@ class User {
 
         if ($users) {
             return $users;
+
+        } else {
+            return false;
+        }
+    }
+
+    public function delete_user ($id) {
+
+        $sql = "DELETE FROM users WHERE id = ?;";
+        $run = $this->db->prepare($sql);
+        $run->bind_param("s", $id);
+        $run->execute();
+        $result = $run->get_result();
+
+        if ($result) {
+            return true;
 
         } else {
             return false;
