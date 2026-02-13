@@ -1,9 +1,9 @@
 <?php
-require_once './classes/User.php';
 
-if (isset($_SESSION['user_id'])) {
-    $user = new User();
-    $logged_user = $user->get_user_data($_SESSION['user_id']);
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    session_destroy();
+    header("Location: " . $env->base_url . "?router=login");
+    exit();
 }
 
 ?>
@@ -12,15 +12,19 @@ if (isset($_SESSION['user_id'])) {
     <nav>
         <h2>Homepage</h2>
         <ul>
-            <li><a href="#">Homepage</a></li>
-            <?php if (isset($_SESSION['user_id'])): ?><li><a href="#">Profile</a></li><?php endif; ?>
+            <li><a href="<?php echo $env->base_url . "?router=homepage"; ?>">Homepage</a></li>
+
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <li><a href="<?php echo $env->base_url . "?router=profile"; ?>">Profile</a></li>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <li>
+                    <form method="POST">
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+            <?php endif; ?>
         </ul>
     </nav>
-
-    <div id="homepage"></div>
-
-    <div id="profile">
-        <p>Username: <?php echo $logged_user['username']; ?></p>
-        <p>Email: <?php echo $logged_user['email']; ?></p>
-    </div>
 </div>

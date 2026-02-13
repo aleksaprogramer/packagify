@@ -21,6 +21,10 @@ if (isset($_GET['router'])) {
             require_once '././modules/homepage.php';
             break;
 
+        case 'profile':
+            require_once '././modules/profile.php';
+            break;
+
         default:
             require_once '././modules/404.php';
     }
