@@ -7,7 +7,7 @@ if (!is_logged()) {
 }
 
 // Checking for verifiyed OTP
-if ($_SESSION['otp_verified']) {
+if (isset($_SESSION['otp_verified'])) {
     header("Location: " . $env->base_url . "?router=homepage");
     exit();
 }

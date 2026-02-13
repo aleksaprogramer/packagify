@@ -22,9 +22,9 @@ if (isset($_GET['router'])) {
             break;
 
         default:
-            exit('404. Page not found');
+            require_once '././modules/404.php';
     }
 
 } else {
-    exit('404. Page not found');
+    require_once '././modules/404.php';
 }

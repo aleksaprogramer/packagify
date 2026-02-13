@@ -50,4 +50,22 @@ class User {
             return false;
         }
     }
+
+    public function get_user_data ($id) {
+
+        $sql = "SELECT username, email FROM users WHERE id = ?";
+        $run = $this->db->prepare($sql);
+        $run->bind_param("s", $id);
+        $run->execute();
+        $results = $run->get_result();
+
+        $user = $results->fetch_assoc();
+
+        if (!$user) {
+            return false;
+
+        } else {
+            return $user;
+        }
+    }
 }
