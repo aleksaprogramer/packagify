@@ -68,4 +68,20 @@ class User {
             return $user;
         }
     }
+
+    public function get_all_users () {
+
+        $sql = "SELECT username, email FROM users;";
+        $run = $this->db->prepare($sql);
+        $run->execute();
+        $results = $run->get_result();
+        $users = $results->fetch_all(MYSQLI_ASSOC);
+
+        if ($users) {
+            return $users;
+
+        } else {
+            return false;
+        }
+    }
 }

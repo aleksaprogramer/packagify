@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if (move_uploaded_file($_FILES['uploaded-file']['tmp_name'], $filepath)) {
             $new_package = new Package();
-            $package = $new_package->make_new_package($_SESSION['user_id'], $package_name, $filepath, $documentation, $filepath);
+            $package = $new_package->make_new_package($_SESSION['user_id'], $package_name, $filename, $documentation, $filepath);
 
             if ($package) {
                 header("Location: " . $env->base_url . "?router=homepage");
@@ -80,6 +80,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <div class="make-new-package">
     <h2>New Package</h2>
+
+    <a href="<?php echo $env->base_url . "?router=homepage"; ?>">Back to homepage</a>
+
+    <a href="<?php echo $env->base_url . "?router=profile"; ?>">Profile</a>
+    
+    <a href="<?php echo $env->base_url . "?router=make-new-package"; ?>">Make new package</a>
+
+    <br><br>
 
     <form method="POST" enctype="multipart/form-data">
         <input type="file" name="uploaded-file">

@@ -9,10 +9,10 @@ class Package {
     }
 
     public function make_new_package ($user_id, $package_name, $filename, $documentation, $filepath) {
-        $sql = "INSERT INTO packages(user_id, filename, documentation, filepath)
-        VALUES (?, ?, ?, ?);";
+        $sql = "INSERT INTO packages(user_id, package_name, filename, documentation, filepath)
+        VALUES (?, ?, ?, ?, ?);";
         $run = $this->db->prepare($sql);
-        $run->bind_param("ssss", $user_id, $filename, $documentation, $filepath);
+        $run->bind_param("sssss", $user_id, $package_name, $filename, $documentation, $filepath);
         $result = $run->execute();
 
         if ($result) {
@@ -21,5 +21,9 @@ class Package {
         } else {
             return false;
         }
+    }
+
+    public function get_all_packages () {
+        $sql = "SELECT user_id, ";
     }
 }
