@@ -17,12 +17,14 @@ $documentation_error = false;
 
 // Handling upload
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    var_dump($_FILES['uploaded-file']['name']);
 
     // File handling
     $target_dir = "uploads/";
     $target_file = $target_dir . $_FILES['uploaded-file']['name'];
     $file_extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    $package_name = htmlspecialchars(trim($_POST['package-name']));
+    $documentation = htmlspecialchars(trim($_POST['documentation']));
 
     if ($_FILES['uploaded-file']['name'] === "") {
         $file_error = 'Please upload file';
@@ -33,6 +35,44 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else if ($_FILES['uploaded-file']['size'] > $max_size) {
         $file_error = 'The file should have less than 25MB';
 
+    } else if ($package_name === '') {
+        $package_name_error = 'Please enter package name';
+
+    } else if (strlen($package_name) < 3) {
+        $package_name_error = 'Package name should have at least 3 characters';
+
+    } else if (strlen($package_name) > 25) {
+        $package_name_error = 'Package name cannot have more than 25 characters';
+
+    } else if ($documentation === '') {
+        $documentation_error = 'Please enter documentation';
+
+    } else if (strlen($documentation) > 4000) {
+        $documentation_error = 'You reached the documentation characters limit';
+
+    } else {
+        $filename = bin2hex(random_bytes(4)) . "." . $file_extension;
+        $filepath = $target_dir . $filename;
+
+        // $_FILES['uploaded-file']['name']
+
+        if (move_uploaded_file($_FILES['uploaded-file']['tmp_name'], $filepath)) {
+            $new_package = new Package();
+            $package = $new_package->make_new_package($_SESSION['user_id'], $package_name, $filepath, $documentation, $filepath);
+
+            if ($package) {
+                header("Location: " . $env->base_url . "?router=homepage");
+                exit();
+
+            } else {
+                header("Location: " . $env->base_url . "?router=make-new-package");
+                exit();
+            }
+
+        } else {
+            header("Location: " . $env->base_url . "?router=make-new-package");
+            exit();
+        }
     }
 }
 
