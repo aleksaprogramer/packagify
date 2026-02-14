@@ -105,8 +105,7 @@ class User {
         $sql = "DELETE FROM users WHERE id = ?;";
         $run = $this->db->prepare($sql);
         $run->bind_param("s", $id);
-        $run->execute();
-        $result = $run->get_result();
+        $result = $run->execute();
 
         if ($result) {
             return true;

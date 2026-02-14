@@ -59,6 +59,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <div class="edit-profile">
     <h2>Edit Profile</h2>
 
+    <a href="<?php echo $env->base_url . "?router=profile"; ?>">Back to profile</a>
+
+    <br><br>
+
     <form method="POST">
         <input type="text" placeholder="Username" name="username">
         <?php if ($username_error): ?>
@@ -72,4 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <button type="submit">Update</button>
     </form>
+
+    <br><br>
+
+    <a href="<?php echo $env->base_url . "?router=delete-profile"; ?>">Delete profile</a>
 </div>

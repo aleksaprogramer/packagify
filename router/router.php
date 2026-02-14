@@ -29,6 +29,10 @@ if (isset($_GET['router'])) {
             require_once '././modules/edit-profile.php';
             break;
 
+        case 'delete-profile':
+            require_once '././modules/delete-profile.php';
+            break;
+
         case 'make-new-package':
             require_once '././modules/make-new-package.php';
             break;
