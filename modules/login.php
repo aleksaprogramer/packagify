@@ -76,7 +76,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <form method="POST">
         <input type="hidden" name="csrf-token" value="<?php echo $_SESSION['csrf_token']; ?>">
         <input type="email" placeholder="Email" name="email">
+        <?php if ($email_error): ?>
+            <p><?php echo $email_error; ?></p>
+        <?php endif; ?>
+
         <input type="password" placeholder="Password" name="password">
+        <?php if ($password_error): ?>
+            <p><?php echo $password_error; ?></p>
+        <?php endif; ?>
+
         <button type="submit">Login</button>
         <a href="<?php echo $env->base_url . "?router=register"; ?>">Don't have account? Register</a>
     </form>
