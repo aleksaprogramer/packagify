@@ -78,5 +78,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="email" placeholder="Email" name="email">
         <input type="password" placeholder="Password" name="password">
         <button type="submit">Login</button>
+        <a href="<?php echo $env->base_url . "?router=register"; ?>">Don't have account? Register</a>
     </form>
 </div>

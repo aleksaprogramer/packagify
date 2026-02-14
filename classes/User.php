@@ -81,6 +81,22 @@ class User {
             return $users;
 
         } else {
+            return [];
+        }
+    }
+
+    public function update_user ($id, $username, $email) {
+
+        $sql = "UPDATE users SET username = ?, email = ? WHERE id = ?;";
+        $run = $this->db->prepare($sql);
+        $run->bind_param("sss", $username, $email, $id);
+        $run->execute();
+        $result = $run->get_result();
+
+        if ($result) {
+            return true;
+
+        } else {
             return false;
         }
     }

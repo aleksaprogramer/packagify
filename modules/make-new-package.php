@@ -81,13 +81,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <div class="make-new-package">
     <h2>New Package</h2>
 
-    <a href="<?php echo $env->base_url . "?router=homepage"; ?>">Back to homepage</a>
-
-    <a href="<?php echo $env->base_url . "?router=profile"; ?>">Profile</a>
-    
-    <a href="<?php echo $env->base_url . "?router=make-new-package"; ?>">Make new package</a>
-
-    <br><br>
+    <ul>
+        <li><a href="<?php echo $env->base_url . "?router=homepage"; ?>">Back to homepage</a></li>
+        <li><a href="<?php echo $env->base_url . "?router=profile"; ?>">Profile</a></li>
+        <li><a href="<?php echo $env->base_url . "?router=make-new-package"; ?>">Make new package</a></li>
+    </ul>
 
     <form method="POST" enctype="multipart/form-data">
         <input type="file" name="uploaded-file">

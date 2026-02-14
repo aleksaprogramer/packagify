@@ -117,5 +117,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php endif; ?>
 
         <button type="submit">Register</button>
+        <a href="<?php echo $env->base_url . "?router=login"; ?>">Already have account? Log in</a>
     </form>
 </div>

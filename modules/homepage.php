@@ -14,6 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <ul>
             <li><a href="<?php echo $env->base_url . "?router=homepage"; ?>">Homepage</a></li>
 
+            <?php if (!isset($_SESSION['user_id'])): ?>
+                <li><a href="<?php echo $env->base_url . "?router=login"; ?>">Login</a></li>
+            <?php endif; ?>
+
             <?php if (isset($_SESSION['user_id'])): ?>
                 <li><a href="<?php echo $env->base_url . "?router=profile"; ?>">Profile</a></li>
             <?php endif; ?>
