@@ -90,8 +90,7 @@ class User {
         $sql = "UPDATE users SET username = ?, email = ? WHERE id = ?;";
         $run = $this->db->prepare($sql);
         $run->bind_param("sss", $username, $email, $id);
-        $run->execute();
-        $result = $run->get_result();
+        $result = $run->execute();
 
         if ($result) {
             return true;
