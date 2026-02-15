@@ -57,7 +57,7 @@ class Package {
     }
 
     public function get_packages_by_user_id ($id) {
-        $sql = "SELECT package_name, created_at FROM packages WHERE user_id = ?";
+        $sql = "SELECT id, package_name, created_at FROM packages WHERE user_id = ?";
         $run = $this->db->prepare($sql);
         $run->bind_param("s", $id);
         $run->execute();

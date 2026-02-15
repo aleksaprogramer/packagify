@@ -39,6 +39,7 @@ $packages_by_user = $package->get_packages_by_user_id($_SESSION['user_id']);
         <?php foreach ($packages_by_user as $package): ?>
             <h3>Package name: <?php echo $package['package_name']; ?></h3>
             <h3>Created at: <?php echo $package['created_at']; ?></h3>
+            <p><a href="<?php echo $env->base_url . "?router=edit-package&id=" . $package['id']; ?>">Edit Package</a></p>
         <?php endforeach; ?>
     </div>
 </div>

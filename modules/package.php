@@ -14,7 +14,6 @@ $data = $package->get_package_data($package_id);
 
 $user = new User();
 $author = $user->get_user_data($data['user_id']);
-var_dump($author);
 
 if (!$data) {
     header("Location: " . $env->base_url . "?router=homepage");
