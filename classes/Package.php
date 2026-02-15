@@ -23,6 +23,23 @@ class Package {
         }
     }
 
+    public function get_package_data ($id) {
+        $sql = "SELECT user_id, package_name, documentation, created_at FROM packages WHERE id = ?";
+        $run = $this->db->prepare($sql);
+        $run->bind_param("s", $id);
+        $run->execute();
+        $results = $run->get_result();
+
+        $package = $results->fetch_assoc();
+
+        if (!$package) {
+            return false;
+
+        } else {
+            return $package;
+        }
+    }
+
     public function get_all_packages () {
         $sql = "SELECT user_id, package_name, documentation, created_at
         FROM packages";

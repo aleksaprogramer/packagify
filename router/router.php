@@ -37,6 +37,10 @@ if (isset($_GET['router'])) {
             require_once '././modules/make-new-package.php';
             break;
 
+        case 'package':
+            require_once '././modules/package.php';
+            break;
+
         case 'admin-page':
             require_once '././modules/admin-page.php';
             break;

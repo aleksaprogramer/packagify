@@ -41,11 +41,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php foreach ($packages as $package): ?>
             <p>Author: <?php
                 
-                $user = new User();
-                $data = $user->get_user_data($package['user_id']);
-                echo $data['username'];
+            $user = new User();
+            $data = $user->get_user_data($package['user_id']);
+            echo $data['username'];
 
-                ?></p>
+            ?></p>
             <p>Package Name: <?php echo $package['package_name']; ?></p>
         <?php endforeach; ?>
     </div>
