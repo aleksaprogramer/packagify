@@ -1,4 +1,9 @@
 <?php
+require_once './classes/Package.php';
+require_once './classes/User.php';
+
+$package = new Package();
+$packages = $package->get_all_packages();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     session_destroy();
@@ -31,4 +36,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <?php endif; ?>
         </ul>
     </nav>
+
+    <div class="packages-container">
+        <?php foreach ($packages as $package): ?>
+            <p>Author: <?php
+                
+                $user = new User();
+                $data = $user->get_user_data($package['user_id']);
+                echo $data['username'];
+
+                ?></p>
+            <p>Package Name: <?php echo $package['package_name']; ?></p>
+        <?php endforeach; ?>
+    </div>
 </div>
