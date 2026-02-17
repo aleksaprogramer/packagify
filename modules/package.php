@@ -22,25 +22,18 @@ if (!$current_package) {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    // if (file_exists($current_package['filepath'])) {
-    //     header('Content-Description: File Transfer');
-    //     header('Content-Type: application/octet-stream');
-    //     header('Content-Disposition: attachment; filename="'.$current_package['filepath'].'"');
-    //     header('Expires: 0');
-    //     header('Cache-Control: must-revalidate');
-    //     header('Pragma: public');
-    //     readfile($package['filepath']);
-    // }
-
     $filename = $current_package['filename'];
     $filepath = $current_package['filepath'];
 
     if (file_exists($filepath)) {
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Expires: 0');
         header("Cache-Control: public");
         header("Content-Description: File Transfer");
         header("Content-Disposition: attachment; filename=$filename");
         header("Content-Type: application/zip");
-        // header("Content-Transfer-Encoding: binary");
+        header("Content-Transfer-Encoding: binary");
 
         readfile($filepath);
         exit();

@@ -24,7 +24,7 @@ class Package {
     }
 
     public function get_package_data ($id) {
-        $sql = "SELECT user_id, package_name, documentation, filepath, created_at FROM packages WHERE id = ?";
+        $sql = "SELECT user_id, package_name, filename, documentation, filepath, created_at FROM packages WHERE id = ?";
         $run = $this->db->prepare($sql);
         $run->bind_param("s", $id);
         $run->execute();
