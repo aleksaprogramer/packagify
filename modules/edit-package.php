@@ -44,14 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $updated_package = $package->update_package($package_id, $documentation);
 
         if ($updated_package) {
-            // header("Location: " . $env->base_url . "?router=profile");
-            // exit();
-            exit(var_dump($updated_package));
+            header("Location: " . $env->base_url . "?router=profile");
+            exit();
 
         } else {
-            // header("Location: " . $env->base_url . "?router=edit-profile");
-            // exit();
-            exit('failed');
+            header("Location: " . $env->base_url . "?router=edit-profile");
+            exit();
         }
     }
 }

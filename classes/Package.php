@@ -76,7 +76,7 @@ class Package {
     public function update_package($id, $documentation) {
         $sql = "UPDATE packages SET documentation = ? WHERE id = ?;";
         $run = $this->db->prepare($sql);
-        $run->bind_param("ss", $id, $documentation);
+        $run->bind_param("ss", $documentation, $id);
         $result = $run->execute();
 
         if ($result) {
