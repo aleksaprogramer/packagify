@@ -73,5 +73,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <br><br>
 
-    <a href="<?php echo $env->base_url . "?router=delete-profile"; ?>">Delete profile</a>
+    <a href="<?php echo $env->base_url . "?router=delete-package&id=" . $package_id; ?>">Delete package</a>
 </div>

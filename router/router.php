@@ -45,6 +45,10 @@ if (isset($_GET['router'])) {
             require_once '././modules/edit-package.php';
             break;
 
+        case 'delete-package':
+            require_once '././modules/delete-package.php';
+            break;
+
         case 'admin-page':
             require_once '././modules/admin-page.php';
             break;

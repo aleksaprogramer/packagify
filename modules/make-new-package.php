@@ -89,8 +89,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <form method="POST" enctype="multipart/form-data">
         <input type="file" name="uploaded-file">
+        <?php if ($file_error): ?>
+            <p><?php echo $file_error; ?></p>
+        <?php endif; ?>
+
         <input type="text" placeholder="Package name*" name="package-name">
+        <?php if ($package_name_error): ?>
+            <p><?php echo $package_name_error; ?></p>
+        <?php endif; ?>
+
         <input type="text" placeholder="Documentation*" name="documentation">
+        <?php if ($documentation_error): ?>
+            <p><?php echo $documentation_error; ?></p>
+        <?php endif; ?>
+
         <button type="submit">Create</button>
     </form>
 </div>

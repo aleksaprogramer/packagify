@@ -86,4 +86,19 @@ class Package {
             return false;
         }
     }
+
+    public function delete_package ($id) {
+
+        $sql = "DELETE FROM packages WHERE id = ?;";
+        $run = $this->db->prepare($sql);
+        $run->bind_param("s", $id);
+        $result = $run->execute();
+
+        if ($result) {
+            return true;
+
+        } else {
+            return false;
+        }
+    }
 }
