@@ -24,6 +24,10 @@ if ($current_package['user_id'] !== $_SESSION['user_id']) {
 
 // Handling package deletion
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (file_exists($current_package['filepath'])) {
+        unlink($current_package['filepath']);
+    }
+
     $deleted_package = $package->delete_package($package_id);
 
     if ($deleted_package) {
