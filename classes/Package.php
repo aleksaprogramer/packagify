@@ -72,4 +72,18 @@ class Package {
             return [];
         }
     }
+
+    public function update_package($id, $documentation) {
+        $sql = "UPDATE packages SET documentation = ? WHERE id = ?;";
+        $run = $this->db->prepare($sql);
+        $run->bind_param("ss", $id, $documentation);
+        $result = $run->execute();
+
+        if ($result) {
+            return true;
+
+        } else {
+            return false;
+        }
+    }
 }
