@@ -15,6 +15,12 @@ if (!isset($_GET['id'])) {
 $package_id = $_GET['id'];
 
 $package = new Package();
+$current_package = $package->get_package_data($package_id);
+
+if ($current_package['user_id'] !== $_SESSION['user_id']) {
+    header("Location: " . $env->base_url . "?router=homepage");
+    exit();
+}
 
 // Handling package deletion
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
