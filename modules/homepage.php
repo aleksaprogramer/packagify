@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo $data['username'];
 
             ?></p>
-            <p>Package Name: <?php echo $package['package_name']; ?></p>
+            <a href="<?php echo $env->base_url . "?router=package&id=" . $package['id'] ?>">Package Name: <?php echo $package['package_name']; ?></a>
         <?php endforeach; ?>
     </div>
 </div>

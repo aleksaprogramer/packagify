@@ -41,7 +41,7 @@ class Package {
     }
 
     public function get_all_packages () {
-        $sql = "SELECT user_id, package_name, documentation, created_at
+        $sql = "SELECT id, user_id, package_name, documentation, created_at
         FROM packages";
         $run = $this->db->prepare($sql);
         $run->execute();
